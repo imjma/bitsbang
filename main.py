@@ -17,10 +17,11 @@
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
 
+from bitsable.bitsbang import PublicHandler
 
-class MainHandler(webapp.RequestHandler):
+class MainHandler(PublicHandler):
     def get(self):
-        self.response.out.write('Hello world!')
+        self.render('index.html')
 
 
 def main():
