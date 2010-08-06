@@ -8,7 +8,7 @@ from bitsable.bitsbang.util.base import *
 
 class User(db.Model):
     username = db.StringProperty(required=True, indexed=True)
-    email = db.StringProperty(required=True)
+    email = db.EmailProperty(required=True)
     password = db.StringProperty(required=True)
     
     username_lower = db.StringProperty(indexed=True)
@@ -37,7 +37,7 @@ class User(db.Model):
         
     @classmethod
     def login(self, username, password):
-        user = self.all().filter('username = ', username).get()
+        user = self.all().filter('username_lower = ', username.lower).get()
         if user is None:
             return None,None
         logging.info('login - username: %s, password: %s' % (username, password))

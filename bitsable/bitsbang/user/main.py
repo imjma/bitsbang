@@ -45,8 +45,8 @@ class SignupHandler(PublicHandler):
             errors += 1
             username_error = 3
         elif re.search('^[a-zA-Z0-9\-\_]+$', username):
-            user = User.gql("WHERE username_lower = :1", username.lower())
-            if user.count() > 0:
+            user = User.all().filter('username_lower = ', username.lower()).get()
+            if not user is None:
                 errors += 1
                 username_error = 5
         else:
@@ -64,8 +64,8 @@ class SignupHandler(PublicHandler):
             errors += 1
             email_error = 1
         elif re.match("^.+\\@(\\[?)[a-zA-Z0-9\\-\\.]+\\.([a-zA-Z]{2,3}|[0-9]{1,3})(\\]?)$", email):
-            u = User.gql("WHERE email = :1", email)
-            if u.count() > 0:
+            user = User.all().filter('email = ', email).get()
+            if not user is None:
                 errors += 1
                 email_error = 3
         else:
@@ -103,7 +103,7 @@ class SignupHandler(PublicHandler):
                 # redirect to home page
                 self.redirect('/')
             else:
-                logging.info('Error ^ signup - username: %s, password: %s' % (username, password))
+                logging.error('Error ^ signup - username: %s, password: %s' % (username, password))
                 notice = u'some errors on saving data'
 
         self.template_value = ({
