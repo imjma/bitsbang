@@ -17,7 +17,7 @@
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
 
-from bitsable.bitsbang import PublicHandler
+from bitsable.bitsbang.main import PublicHandler
 
 class MainHandler(PublicHandler):
     def get(self):

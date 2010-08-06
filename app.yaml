@@ -4,5 +4,20 @@ runtime: python
 api_version: 1
 
 handlers:
+- url: /static
+  static_dir: static
+
+- url: /u/.*
+  script: bitsable/bitsbang/user/main.py
+
+- url: /signup
+  script: bitsable/bitsbang/user/main.py
+  
+- url: /signin
+  script: bitsable/bitsbang/user/main.py
+  
+- url: /signout
+  script: bitsable/bitsbang/user/main.py
+
 - url: .*
   script: main.py

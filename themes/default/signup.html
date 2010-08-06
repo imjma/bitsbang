@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block header %}
+<title>{{ setting.title }} - Sign Up</title>
+{% endblock %}
+
+{% block body %}
+
+<h1>Join Us</h1>
+{% if notice %}
+<span class="error">{{ notice }}</span>
+{% endif %}
+<form method="post" action="/signup">
+	<dl class="signup">
+		<dd>
+			<label>Username</label>
+			<input type="text" name="username" value="{{ username }}" autocomplete="off" />
+			{% if username_error %}
+			<span>{{ username_error }}</span>
+			{% endif %}
+		</dd>
+		<dd>
+			<label>Email</label>
+			<input type="text" name="email" value="{{ email}}" autocomplete="off" />
+			{% if email_error %}
+			<span>{{ email_error }}</span>
+			{% endif %}
+		</dd>
+		<dd>
+			<label>Password</label>
+			<input type="password" name="password" value="" />
+			{% if password_error %}
+			<span>{{ password_error }}</span>
+			{% endif %}
+		</dd>
+		<dd>
+			<label>&nbsp;</label>
+			<input type="submit" value="Create my account" name="submit" />
+		</dd>
+	</dl>
+</form>
+
+{% endblock %}

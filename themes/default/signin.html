@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block header %}
+<title>{{ setting.title }} - Sign In</title>
+{% endblock %}
+
+{% block body %}
+
+<h1>Log in</h1>
+{% if notice %}
+<span class="error">{{ notice }}</span>
+{% endif %}
+<form method="post" action="/signin">
+	<dl class="signin">
+		<dd>
+			<label>Username</label>
+			<input type="text" name="username" value="" autocomplete="off" />
+		</dd>
+		<dd>
+			<label>Password</label>
+			<input type="password" name="password" value="" />
+		</dd>
+		<dd>
+			<label>&nbsp;</label>
+			<input type="submit" value="Log in" name="submit" />
+		</dd>
+	</dl>
+</form>
+
+{% endblock %}
