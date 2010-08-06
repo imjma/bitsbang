@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-# from google.appengine.api import mail
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
 
@@ -11,7 +10,7 @@ from bitsable.bitsbang.main import PublicHandler
 from bitsable.bitsbang.user.models import User
 from bitsable.bitsbang.util.base import *
 
-MIN_USERNAME_LENGTH = 6
+MIN_USERNAME_LENGTH = 3
 MAX_USERNAME_LENGTH = 20
 MIN_PASSWORD_LENGTH = 6
 MAX_PASSWORD_LENGTH = 20
@@ -58,22 +57,17 @@ class SignupHandler(PublicHandler):
         email_error_value = [u'ok',
         u'can\'t be blank',
         u'should look like an email address',
-        u'has alredy been taken',
-        u'should a validation email address']
+        u'has alredy been taken']
 
         email_error = 0
         if len(email) == 0:
             errors += 1
             email_error = 1
         elif re.match("^.+\\@(\\[?)[a-zA-Z0-9\\-\\.]+\\.([a-zA-Z]{2,3}|[0-9]{1,3})(\\]?)$", email):
-            if not mail.is_email_valid(email):
+            u = User.gql("WHERE email = :1", email)
+            if u.count() > 0:
                 errors += 1
-                email_error = 4
-            else:
-                u = User.gql("WHERE email = :1", email)
-                if u.count() > 0:
-                    errors += 1
-                    email_error = 3
+                email_error = 3
         else:
             errors += 1
             email_error = 2

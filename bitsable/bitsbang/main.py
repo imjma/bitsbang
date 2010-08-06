@@ -24,15 +24,15 @@ class PublicHandler(webapp.RequestHandler):
         self.session_key = cookies.get('bitsable-session-key', None)
         
         self.user = None
-        if self.session_key is not None:
-            logging.info("session_key:%s" % (self.session_key))
+        if self.session_key is not None and len(self.session_key) == 40:
+            logging.info("session_key:%s" % self.session_key)
             self.user = Session.get_user_by_session(self.session_key)
         self.template_value['user'] = self.user
         
 
     def render(self, template_file):
         """render template file"""
-        template_file = 'themes/default/%s' % (template_file)
+        template_file = 'themes/default/%s' % template_file
         path = os.path.join(os.path.dirname(__file__), r'../../', template_file)
         self.response.out.write(template.render(path, self.template_value))
 
