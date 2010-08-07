@@ -26,30 +26,46 @@
         </dd>
         <dd>
             <label>UI Interact:</label>
-            <input type="text" name="ui_interact" value="{{ ui_interact }}" />
-            {% if ui_interact_error %}
-			<span>{{ ui_interact_error }}</span>
+            {% if edit_mode %}
+                {{ spam.rating.ui_interact }}
+            {% else %}
+                <input type="text" name="ui_interact" value="{{ ui_interact }}" />
+                {% if ui_interact_error %}
+    			<span>{{ ui_interact_error }}</span>
+    			{% endif %}
 			{% endif %}
         </dd>
         <dd>
             <label>Gameplay:</label>
-            <input type="text" name="gameplay" value="{{ gameplay }}" />
-            {% if gameplay_error %}
-			<span>{{ gameplay_error }}</span>
-			{% endif %}
+            {% if edit_mode %}
+                {{ spam.rating.gameplay }}
+            {% else %}
+                <input type="text" name="gameplay" value="{{ gameplay }}" />
+                {% if gameplay_error %}
+    			<span>{{ gameplay_error }}</span>
+    			{% endif %}
+    		{% endif %}
         </dd>
         <dd>
             <label>Replicability:</label>
-            <input type="text" name="replicability" value="{{ replicability }}" />
-            {% if replicability_error %}
-			<span>{{ replicability_error }}</span>
+            {% if edit_mode %}
+                {{ spam.rating.replicability }}
+            {% else %}
+                <input type="text" name="replicability" value="{{ replicability }}" />
+                {% if replicability_error %}
+    			<span>{{ replicability_error }}</span>
+    			{% endif %}
 			{% endif %}
         </dd>
         <dd>
             <label>Highlight:</label>
-            <input type="text" name="highlight" value="{{ highlight }}" />
-            {% if highlight_error %}
-			<span>{{ highlight_error }}</span>
+            {% if edit_mode %}
+                {{ spam.rating.highlight }}
+            {% else %}
+                <input type="text" name="highlight" value="{{ highlight }}" />
+                {% if highlight_error %}
+    			<span>{{ highlight_error }}</span>
+    			{% endif %}
 			{% endif %}
         </dd>
         <dd>

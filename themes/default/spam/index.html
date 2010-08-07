@@ -11,10 +11,10 @@
     {% for spam in spams %}
         <li>
         <article>
-            <header><h2><a href="/spam/{{ spam.key.id}}" title="{{ spam.title }}">{{ spam.title }}</a></h2></header>
+            <header><h2><a href="/spam/{{ spam.key.id}}" title="{{ spam.title|escape }}">{{ spam.title|escape }}</a></h2></header>
             <div>
             <p>
-            {{ spam.average_rating }} scores by {{ spam.spam_count }} spam{{ spam.spam_count|pluralize }} | spam by {{ spam.user.username }}
+            {{ spam.average_rating|floatformat:1 }} scores by {{ spam.spam_count }} spam{{ spam.spam_count|pluralize }} | spam by {{ spam.user.username }}
             {% if spam.last_spam %} | last: {{ spam.last_spam.username }}{% endif %}
              </p>
             <p></p>

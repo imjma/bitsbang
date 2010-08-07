@@ -6,11 +6,11 @@
 {% block content %}
 {% if spam %}
     <article class="spam">
-        <h2 class="title">{{ spam.title }}</h2>
-        <p>{{ spam.average_rating }} scores by {{ spam.spam_count }} spam{{ spam.spam_count|pluralize }}<p>
-        <p>{{ spam.sub_title }}</p>
+        <h2 class="title">{{ spam.title|escape }}</h2>
+        <p>{{ spam.average_rating|floatformat:1 }} scores by {{ spam.spam_count }} spam{{ spam.spam_count|pluralize }}<p>
+        <p>{{ spam.sub_title|escape }}</p>
         <p>by {{ spam.user.username }}</p>
-        <p>{{ spam.comment }}</p>
+        <p>{{ spam.comment|escape|linebreaksbr }}</p>
         <p>
             <ul>
                  <li>UI Interact: {{ spam.rating.ui_interact}}</li>
@@ -19,13 +19,16 @@
                  <li>Highlight: {{ spam.rating.highlight}}</li>
             </ul>
         </p>
+        {% ifequal user.key spam.user.key %}
+        <p><a href="/spam/{{ spam.key.id }}/edit">edit</a></p>
+        {% endifequal %}
     </article>
     {% if subspams %}
         {% for subspam in subspams %}
         <article class="subspam">
-            <p>{{ subspam.sub_title }}</p>
+            <p>{{ subspam.sub_title|escape }}</p>
             <p>by {{ subspam.user.username }}</p>
-            <p>{{ subspam.comment }}</p>
+            <p>{{ subspam.comment|escape|linebreaksbr }}</p>
             <p>
                 <ul>
                      <li>UI Interact: {{ subspam.rating.ui_interact}}</li>
@@ -34,6 +37,9 @@
                      <li>Highlight: {{ subspam.rating.highlight}}</li>
                 </ul>
             </p>
+            {% ifequal user.key subspam.user.key %}
+            <p><a href="/spam/{{ subspam.parent_spam.key.id }}/{{ subspam.key.id }}/edit">edit</a></p>
+            {% endifequal %}
         </article>
         {% endfor %}
     {% endif %}
