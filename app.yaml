@@ -19,5 +19,11 @@ handlers:
 - url: /signout
   script: bitsable/bitsbang/user/main.py
 
+- url: /spam/.*
+  script: bitsable/bitsbang/spam/main.py
+  
+- url: /spam
+  script: bitsable/bitsbang/spam/main.py
+
 - url: .*
   script: main.py

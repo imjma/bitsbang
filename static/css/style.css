@@ -1,0 +1,97 @@
+/* Imports */
+@import url("reset.css");
+
+/* Body */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 80%; /* Base font size: 13px */
+    background-color: #ccc;
+}
+
+/* Headings */
+h2 {font-size: 1.571em}	/* 22px */
+h3 {font-size: 1.429em}	/* 20px */
+h4 {font-size: 1.286em}	/* 18px */
+h5 {font-size: 1.143em}	/* 16px */
+h6 {font-size: 1em}	/* 14px */
+
+/* Anchors */
+a {outline: 0;}
+a img {border: 0px; text-decoration: none;}
+a:link, a:visited {
+	padding: 0 1px;
+	text-decoration: underline;
+}
+a:hover, a:active {
+	text-decoration: none;
+}
+
+/* Paragraphs */
+p {margin-bottom: 1.143em;}
+* p:last-child {margin-bottom: 0;}
+
+strong, b {font-weight: bold;}
+em, i {font-style: italic;}
+
+::-moz-selection {background: #ccc; color: #fff;}
+::selection {background: #ccc; color: #fff;}
+
+/* HTML5 tags */
+header, section, footer,
+aside, nav, article, figure {
+	display: block;
+}
+
+/* header nav */
+#header div.top {
+    width: 780px;
+    margin: 0 auto;
+}
+#header nav {
+	height: 20px;
+	line-height: 30px;
+	margin: 0 auto 2em auto;
+	padding: 0;
+	text-align: center;
+	width: 780px;
+
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+#header nav ul {list-style: none; margin: 0 auto; width: 780;}
+#header nav li {float: left; display: inline; margin: 0;}
+
+/* content */
+#content {
+    width: 780px;
+    margin: 0 auto;
+}
+/* section spam */
+#content article {
+    background-color: #fff;
+    padding: 5px;
+}
+#content article.spam {
+    border: 1px solid #ccc;
+    margin: 0px 0px 5px 0px;
+}
+#content article.spam .title {
+    border-bottom: 1px solid #ccc;
+}
+#content article.subspam {
+    border: 1px solid #ccc;
+    margin: 10px 0px 0px 0px;
+}
+
+/* footer */
+#footer {
+    border-top: 1px solid #ccc;
+    background-color: #fff;
+}
+
+#footer div.bottom {
+    width: 780px;
+    margin:0 auto;
+}

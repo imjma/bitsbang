@@ -1,0 +1,44 @@
+{% extends '../base.html' %}
+{% block header %}
+<title>{{ setting.title }} - Spam - {{ spam.title }}</title>
+{% endblock %}
+
+{% block content %}
+{% if spam %}
+    <article class="spam">
+        <h2 class="title">{{ spam.title }}</h2>
+        <p>{{ spam.average_rating }} scores by {{ spam.spam_count }} spam{{ spam.spam_count|pluralize }}<p>
+        <p>{{ spam.sub_title }}</p>
+        <p>by {{ spam.user.username }}</p>
+        <p>{{ spam.comment }}</p>
+        <p>
+            <ul>
+                 <li>UI Interact: {{ spam.rating.ui_interact}}</li>
+                 <li>Gameplay: {{ spam.rating.gameplay}}</li>
+                 <li>Replicability: {{ spam.rating.replicability}}</li>
+                 <li>Highlight: {{ spam.rating.highlight}}</li>
+            </ul>
+        </p>
+    </article>
+    {% if subspams %}
+        {% for subspam in subspams %}
+        <article class="subspam">
+            <p>{{ subspam.sub_title }}</p>
+            <p>by {{ subspam.user.username }}</p>
+            <p>{{ subspam.comment }}</p>
+            <p>
+                <ul>
+                     <li>UI Interact: {{ subspam.rating.ui_interact}}</li>
+                     <li>Gameplay: {{ subspam.rating.gameplay}}</li>
+                     <li>Replicability: {{ subspam.rating.replicability}}</li>
+                     <li>Highlight: {{ subspam.rating.highlight}}</li>
+                </ul>
+            </p>
+        </article>
+        {% endfor %}
+    {% endif %}
+    {% if can_spam %}
+    <p><a href="/spam/{{ spam.key.id }}/new">Spam it</a></p>
+    {% endif %}
+{% endif %}
+{% endblock %}

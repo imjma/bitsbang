@@ -28,13 +28,15 @@ class PublicHandler(webapp.RequestHandler):
             logging.info("session_key:%s" % self.session_key)
             self.user = Session.get_user_by_session(self.session_key)
         self.template_value['user'] = self.user
-        
 
     def render(self, template_file):
         """render template file"""
         template_file = 'themes/default/%s' % template_file
         path = os.path.join(os.path.dirname(__file__), r'../../', template_file)
         self.response.out.write(template.render(path, self.template_value))
+        
+    def error(self, error):
+        pass
 
 if __name__ == '__main__':
     pass

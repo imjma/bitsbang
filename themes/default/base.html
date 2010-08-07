@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8" />
     {% block header %}{% endblock %}
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
-    <meta name="Author" content="Jie Ma" >
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css" />
+    <meta name="Author" content="Jie Ma" />
 </head>
 
 <body>
     <header id="header">
-        <menu>
-            <h1>{{ setting.title }}</h1>
+        <div class="top"><h1>{{ setting.title }}</h1></div>
+        <nav>
             <ul>
                 <li><a href="/">Home</a></li>
                 {% if user %}
@@ -18,18 +19,18 @@
                 <li><a href="/signup">Sign Up</a></li>
                 <li><a href="/signin">Sign In</a></li>
                 {% endif %}
+                <li><a href="/spam">Spam</a></li>
             </ul>
-        </menu>
+        </nav>
     </header>
     
-    <section id="body">
-        {% block body %}{% endblock %}
+    <section id="content">
+        {% block content %}{% endblock %}
     </section>
 
     <footer id="footer">
-        <p>bitsable</p>
-        <p><img src="http://code.google.com/appengine/images/appengine-noborder-120x30.gif"
-alt="Powered by Google App Engine" /></p>
+        <div class="bottom"><p>bitsable <img src="http://code.google.com/appengine/images/appengine-noborder-120x30.gif"
+alt="Powered by Google App Engine" /></p></div>
     </footer>
 </body>
 </html>

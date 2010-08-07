@@ -37,7 +37,7 @@ class User(db.Model):
         
     @classmethod
     def login(self, username, password):
-        user = self.all().filter('username_lower = ', username.lower).get()
+        user = self.all().filter('username_lower = ', username.lower()).get()
         if user is None:
             return None,None
         logging.info('login - username: %s, password: %s' % (username, password))
