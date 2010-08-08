@@ -146,11 +146,18 @@ class SignoutHandler(PublicHandler):
         self.response.headers['Set-Cookie'] ='bitsable-session-key="";path=/'
         self.redirect('/')        
 
+class NotFoundHandler(PublicHandler):
+    def get(self):
+        self.error(404)
+
+    def post(self):
+        self.error(404)
 
 def main():
-    application = webapp.WSGIApplication([('/signup', SignupHandler),
-                                            ('/signin', SigninHandler),
-                                            ('/signout', SignoutHandler)],
+    application = webapp.WSGIApplication([('^/signup/$', SignupHandler),
+                                            ('^/signin/$', SigninHandler),
+                                            ('^/signout/$', SignoutHandler),
+                                            ('/.*', NotFoundHandler)],
                                          debug=True)
     util.run_wsgi_app(application)
 

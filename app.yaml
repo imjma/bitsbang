@@ -14,19 +14,19 @@ handlers:
 - url: /u/.*
   script: bitsable/bitsbang/user/main.py
 
-- url: /signup
+- url: /signup/
   script: bitsable/bitsbang/user/main.py
   
-- url: /signin
+- url: /signin/
   script: bitsable/bitsbang/user/main.py
   
-- url: /signout
+- url: /signout/
   script: bitsable/bitsbang/user/main.py
 
 - url: /spam/.*
   script: bitsable/bitsbang/spam/main.py
   
-- url: /spam
+- url: /spam/
   script: bitsable/bitsbang/spam/main.py
 
 - url: .*

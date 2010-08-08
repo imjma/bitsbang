@@ -23,9 +23,16 @@ class MainHandler(PublicHandler):
     def get(self):
         self.render('index.html')
 
+class NotFoundHandler(PublicHandler):
+    def get(self):
+        self.error(404)
+        
+    def post(self):
+        self.error(404)
 
 def main():
-    application = webapp.WSGIApplication([('/', MainHandler)],
+    application = webapp.WSGIApplication([('/', MainHandler),
+                                            ('/.*', NotFoundHandler)],
                                          debug=True)
     util.run_wsgi_app(application)
 

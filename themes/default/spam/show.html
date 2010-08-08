@@ -29,7 +29,7 @@
                 <p>By {{ spam.user.username }} at {{ spam.created_at|timesince }} ago</p>
                 {% ifequal user.key spam.user.key %}
                 <ul>
-                    <li class="nobg"><a href="/spam/{{ spam.key.id }}/edit">edit</a></li>
+                    <li class="nobg"><a href="/spam/{{ spam.key.id }}/edit/">edit</a></li>
                 </ul>
                 {% endifequal %}
             </dd>
@@ -53,7 +53,7 @@
                     <p>By {{ subspam.user.username }} at {{ subspam.created_at|timesince }} ago</p>
                     {% ifequal user.key subspam.user.key %}
                     <ul>
-                        <li class="nobg"><a href="/spam/{{ subspam.parent_spam.key.id }}/{{ subspam.key.id }}/edit">edit</a></li>
+                        <li class="nobg"><a href="/spam/{{ subspam.parent_spam.key.id }}/{{ subspam.key.id }}/edit/">edit</a></li>
                     </ul>
                     {% endifequal %}
                 </dd>
