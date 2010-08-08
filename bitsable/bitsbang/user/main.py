@@ -77,7 +77,7 @@ class SignupHandler(PublicHandler):
         #     errors += 1
 
         # verification: password
-        password_error_value = [u'ok',
+        password_error_value = [u'',
         u'can\'t be blank',
         u'' + str(MIN_PASSWORD_LENGTH) +' characters or more (be tricky!)',
         u'is too long(maximum is ' + str(MAX_PASSWORD_LENGTH) + ' characters)']

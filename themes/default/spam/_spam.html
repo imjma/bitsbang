@@ -8,7 +8,12 @@
             {% else %}
                 <input type="text" name="title" value="{{ title }}" class="text" />
                 {% if title_error %}
-    			<span>{{ title_error }}</span>
+                {% ifequal title_error 'ok' %}
+    			<span class="message success">
+    			{% else %}
+    			<span class="message errormsg">
+    			{% endifequal %}
+    			{{ title_error }}</span>
     			{% endif %}
 			{% endif %}
         </dd>
@@ -20,7 +25,12 @@
             <label>Comment:</label>
             <textarea name="comment" rows="20" cols="50" class="text">{{ comment }}</textarea>
             {% if comment_error %}
-			<span>{{ comment_error }}</span>
+            {% ifequal comment_error 'ok' %}
+			<span class="message success">
+			{% else %}
+			<span class="message errormsg">
+			{% endifequal %}
+			{{ comment_error }}</span>
 			{% endif %}
         </dd>
         <dd>
@@ -28,9 +38,14 @@
             {% if edit_mode %}
                 {{ spam.rating.ui_interact }}
             {% else %}
-                <input type="text" name="ui_interact" value="{{ ui_interact }}" />
+                <input type="text" name="ui_interact" value="{{ ui_interact }}" class="text" />
                 {% if ui_interact_error %}
-    			<span>{{ ui_interact_error }}</span>
+                {% ifequal ui_interact_error 'ok' %}
+    			<span class="message success">
+    			{% else %}
+    			<span class="message errormsg">
+    			{% endifequal %}
+    			{{ ui_interact_error }}</span>
     			{% endif %}
 			{% endif %}
         </dd>
@@ -39,9 +54,14 @@
             {% if edit_mode %}
                 {{ spam.rating.gameplay }}
             {% else %}
-                <input type="text" name="gameplay" value="{{ gameplay }}" />
+                <input type="text" name="gameplay" value="{{ gameplay }}" class="text" />
                 {% if gameplay_error %}
-    			<span>{{ gameplay_error }}</span>
+                {% ifequal gameplay_error 'ok' %}
+    			<span class="message success">
+    			{% else %}
+    			<span class="message errormsg">
+    			{% endifequal %}
+    			{{ gameplay_error }}</span>
     			{% endif %}
     		{% endif %}
         </dd>
@@ -50,9 +70,14 @@
             {% if edit_mode %}
                 {{ spam.rating.replicability }}
             {% else %}
-                <input type="text" name="replicability" value="{{ replicability }}" />
+                <input type="text" name="replicability" value="{{ replicability }}" class="text" />
                 {% if replicability_error %}
-    			<span>{{ replicability_error }}</span>
+                {% ifequal replicability_error 'ok' %}
+    			<span class="message success">
+    			{% else %}
+    			<span class="message errormsg">
+    			{% endifequal %}
+    			{{ replicability_error }}</span>
     			{% endif %}
 			{% endif %}
         </dd>
@@ -61,9 +86,14 @@
             {% if edit_mode %}
                 {{ spam.rating.highlight }}
             {% else %}
-                <input type="text" name="highlight" value="{{ highlight }}" />
+                <input type="text" name="highlight" value="{{ highlight }}" class="text" />
                 {% if highlight_error %}
-    			<span>{{ highlight_error }}</span>
+    			{% ifequal highlight_error 'ok' %}
+    			<span class="message success">
+    			{% else %}
+    			<span class="message errormsg">
+    			{% endifequal %}
+    			{{ highlight_error }}</span>
     			{% endif %}
 			{% endif %}
         </dd>

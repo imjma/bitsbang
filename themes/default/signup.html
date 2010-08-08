@@ -9,7 +9,7 @@
     <div class="bheaderr"></div>
     <h2>Join Us</h2>
 </div>
-<div class="main">
+<div id="main">
     {% if notice %}
     <span class="error">{{ notice }}</span>
     {% endif %}
@@ -19,21 +19,31 @@
     			<label>Username</label>
     			<input type="text" name="username" value="{{ username }}" autocomplete="off" class="text" />
     			{% if username_error %}
-    			<span>{{ username_error }}</span>
+    			{% ifequal username_error 'ok' %}
+    			<span class="message success">
+    			{% else %}
+    			<span class="message errormsg">
+    			{% endifequal %}
+    			{{ username_error }}</span>
     			{% endif %}
     		</dd>
     		<dd>
     			<label>Email</label>
     			<input type="text" name="email" value="{{ email}}" autocomplete="off" class="text" />
     			{% if email_error %}
-    			<span>{{ email_error }}</span>
+    			{% ifequal email_error 'ok' %}
+    			<span class="message success">
+    			{% else %}
+    			<span class="message errormsg">
+    			{% endifequal %}
+    			{{ email_error }}</span>
     			{% endif %}
     		</dd>
     		<dd>
     			<label>Password</label>
     			<input type="password" name="password" value="" class="text" />
     			{% if password_error %}
-    			<span>{{ password_error }}</span>
+    			<span class="message errormsg">{{ password_error }}</span>
     			{% endif %}
     		</dd>
     		<dd>

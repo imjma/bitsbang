@@ -9,9 +9,9 @@
     <div class="bheaderr"></div>
     <h2>Log In</h2>
 </div>
-<div class="main">
+<div id="main">
     {% if notice %}
-    <span class="error">{{ notice }}</span>
+    <div class="message notice"><p class="message errormsg">{{ notice }}</p></div>
     {% endif %}
     <form method="post" action="/signin">
     	<dl class="signin">

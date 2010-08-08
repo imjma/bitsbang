@@ -275,6 +275,52 @@ aside, nav, article, figure {
     outline: none;
     vertical-align: middle;
 }
+
+/* Message */
+div#main .notice {
+    width: 300px;
+}
+div#main .message {
+    padding: 7px;
+/*    margin: 10px 0;*/
+    font-weight: bold;
+    overflow: hidden;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    vertical-align: middle;
+}
+
+div#main .message span {
+    padding: 0;
+    width: 93%;
+    float: left;
+}
+
+div#main .message.errormsg {
+    border: 1px solid #e9c59b;
+    background: #ffecce;
+    color: #e3302c;
+}
+    
+div#main .message.success {
+    border: 1px solid #bfde84;
+    background: #edfbd8;
+    color: #508600;
+}
+
+div#main .message.info {
+    border: 1px solid #bbdbe0;
+    background: #ecf9ff;
+    color: #0888c3;
+}
+    
+div#main .message.warning {
+    border: 1px solid #e5e181;
+    background: #fefde2;
+    color: #666;
+}
+
 /* footer */
 #footer {
     border-top: 1px solid #ccc;
