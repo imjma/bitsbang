@@ -15,7 +15,6 @@ class SpamRating(db.Model):
     highlight = db.RatingProperty(required=True)
     
 class SpamBasic(db.Model):
-    title = db.StringProperty(required=True, indexed=True)
     sub_title = db.StringProperty()
     comment = db.TextProperty(required=True)
     
@@ -27,6 +26,7 @@ class SpamBasic(db.Model):
 
 class Spam(SpamBasic):
     """Spam bal"""
+    title = db.StringProperty(required=True, indexed=True)
     last_spam = db.ReferenceProperty(User, collection_name='last_spam_set')
     spam_count = db.IntegerProperty()
     
@@ -65,8 +65,8 @@ class SubSpam(SpamBasic):
     parent_spam = db.ReferenceProperty(Spam)
     
     @classmethod
-    def new(self, title, sub_title, comment, user, ui_interact, gameplay, replicability, highlight, parent_spam):
-        spam = SubSpam(title = title, comment = comment)
+    def new(self, sub_title, comment, user, ui_interact, gameplay, replicability, highlight, parent_spam):
+        spam = SubSpam(comment = comment)
         spam.sub_title = sub_title
         spam.user = user
         spam.parent_spam = parent_spam

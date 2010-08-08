@@ -4,26 +4,31 @@
 {% endblock %}
 
 {% block content %}
-
-<h1>Log in</h1>
-{% if notice %}
-<span class="error">{{ notice }}</span>
-{% endif %}
-<form method="post" action="/signin">
-	<dl class="signin">
-		<dd>
-			<label>Username</label>
-			<input type="text" name="username" value="" autocomplete="off" />
-		</dd>
-		<dd>
-			<label>Password</label>
-			<input type="password" name="password" value="" />
-		</dd>
-		<dd>
-			<label>&nbsp;</label>
-			<input type="submit" value="Log in" name="submit" />
-		</dd>
-	</dl>
-</form>
+<div class="bheader">
+    <div class="bheaderl"></div>
+    <div class="bheaderr"></div>
+    <h2>Log In</h2>
+</div>
+<div class="main">
+    {% if notice %}
+    <span class="error">{{ notice }}</span>
+    {% endif %}
+    <form method="post" action="/signin">
+    	<dl class="signin">
+    		<dd>
+    			<label>Username</label>
+    			<input type="text" name="username" value="" autocomplete="off" class="text" />
+    		</dd>
+    		<dd>
+    			<label>Password</label>
+    			<input type="password" name="password" value="" class="text" />
+    		</dd>
+    		<dd>
+    			<label>&nbsp;</label>
+    			<input type="submit" value="Log in" name="submit" />
+    		</dd>
+    	</dl>
+    </form>
+</div>
 
 {% endblock %}

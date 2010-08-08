@@ -1,9 +1,16 @@
 {% extends '../base.html' %}
 {% block header %}
-<title>{{ setting.title }} - New Spam</title>
+<title>{{ setting.title }} - New</title>
 {% endblock %}
 
 {% block content %}
-<h2>New Spam</h2>
+<div class="bheader">
+    <div class="bheaderl"></div>
+    <div class="bheaderr"></div>
+    <h2>New Spam</h2>
+    {% if back_url %}<ul><li><a href="{{ back_url }}">Back</a></li></ul>{% endif %}
+</div>
+<div class="main">
 {% include '_spam.html' %}
+</div>
 {% endblock %}

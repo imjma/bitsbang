@@ -20,3 +20,8 @@ indexes:
   - name: parent_spam
   - name: updated_at
     direction: desc
+
+- kind: SubSpam
+  properties:
+  - name: parent_spam
+  - name: created_at

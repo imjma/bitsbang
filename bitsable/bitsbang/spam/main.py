@@ -19,7 +19,7 @@ class SpamHandler(PublicHandler):
         else:
             spam = Spam.get_by_id(int(spamid))
             self.template_value['spam'] = spam
-            subspams = SubSpam.all().filter("parent_spam = ", spam)
+            subspams = SubSpam.all().filter("parent_spam = ", spam).order('created_at')
             self.template_value['subspams'] = subspams
             if self.user is not None:
                 self.template_value['can_spam'] = True
@@ -33,6 +33,7 @@ class NewSpamHandler(PublicHandler):
         if not spamid is None:
             parent_spam = find_spam(self, spamid)
             self.template_value['spam'] = parent_spam
+            self.template_value['title'] = parent_spam.title
             self.template_value['back_url'] = '/spam/%s' % spamid
             self.template_value['this_url'] = '/spam/%s/new' % spamid
         self.render('spam/new.html')
@@ -108,7 +109,7 @@ class NewSpamHandler(PublicHandler):
             spam = Spam.new(title, sub_title, comment, self.user, ui_interact, gameplay, replicability, highlight)
             self.redirect('/spam')
         else:
-            spam = SubSpam.new(title, sub_title, comment, self.user, ui_interact, gameplay, replicability, highlight, parent_spam)
+            spam = SubSpam.new(sub_title, comment, self.user, ui_interact, gameplay, replicability, highlight, parent_spam)
             self.redirect('/spam/%s' % spamid)
 
 class EditSpamHandler(PublicHandler):
@@ -117,15 +118,17 @@ class EditSpamHandler(PublicHandler):
         if not subspamid is None:
             spam = find_subspam(self, subspamid)
             self.template_value['this_url'] = '/spam/%s/%s/edit' % (spamid, subspamid)
+            self.template_value['title'] = spam.parent_spam.title
         else:
             spam = find_spam(self, spamid)
             self.template_value['this_url'] = '/spam/%s/edit' % spamid
+            self.template_value['title'] = spam.title
+
         if self.user.key() != spam.user.key():
             return self.redirect('/')
 
         self.template_value['spam'] = spam
-        self.template_value['back_url'] = '/spam/%s' % spamid
-        self.template_value['title'] = spam.title
+        self.template_value['back_url'] = '/spam/%s' % spamid            
         self.template_value['sub_title'] = spam.sub_title
         self.template_value['comment'] = spam.comment
         self.template_value['edit_mode'] = True;
@@ -136,15 +139,17 @@ class EditSpamHandler(PublicHandler):
         if not subspamid is None:
             spam = find_subspam(self, subspamid)
             self.template_value['this_url'] = '/spam/%s/%s/edit' % (spamid, subspamid)
+            self.template_value['title'] = spam.parent_spam.title
         else:
             spam = find_spam(self, spamid)
             self.template_value['this_url'] = '/spam/%s/edit' % spamid
+            self.template_value['title'] = spam.title
+
         if self.user.key() != spam.user.key():
             return self.redirect('/')
             
         self.template_value['spam'] = spam
         self.template_value['back_url'] = '/spam/%s' % spamid
-        self.template_value['title'] = spam.title
         self.template_value['edit_mode'] = True;
 
         sub_title = self.request.get('sub_title').strip()

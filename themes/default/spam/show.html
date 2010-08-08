@@ -5,9 +5,19 @@
 
 {% block content %}
 {% if spam %}
+<div class="bheader">
+    <div class="bheaderl"></div>
+    <div class="bheaderr"></div>
+    <h2>{{ spam.title|escape }}</h2>
+    <ul>
+        <li>{{ spam.average_rating|floatformat:1 }} scores by {{ spam.spam_count }} spam{{ spam.spam_count|pluralize }}</li>
+        {% ifequal user.key spam.user.key %}
+        <li><a href="/spam/{{ spam.key.id }}/edit">edit</a></li>
+        {% endifequal %}
+    </ul>
+</div>
+<div class="main">
     <article class="spam">
-        <h2 class="title">{{ spam.title|escape }}</h2>
-        <p>{{ spam.average_rating|floatformat:1 }} scores by {{ spam.spam_count }} spam{{ spam.spam_count|pluralize }}<p>
         <p>{{ spam.sub_title|escape }}</p>
         <p>by {{ spam.user.username }}</p>
         <p>{{ spam.comment|escape|linebreaksbr }}</p>
@@ -19,9 +29,6 @@
                  <li>Highlight: {{ spam.rating.highlight}}</li>
             </ul>
         </p>
-        {% ifequal user.key spam.user.key %}
-        <p><a href="/spam/{{ spam.key.id }}/edit">edit</a></p>
-        {% endifequal %}
     </article>
     {% if subspams %}
         {% for subspam in subspams %}
@@ -46,5 +53,6 @@
     {% if can_spam %}
     <p><a href="/spam/{{ spam.key.id }}/new">Spam it</a></p>
     {% endif %}
+</div>
 {% endif %}
 {% endblock %}

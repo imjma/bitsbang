@@ -5,7 +5,9 @@
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     font-size: 80%; /* Base font size: 13px */
-    background-color: #ccc;
+    background-color: #FBFBFB;
+    background: url(/static/img/hld.jpg) repeat-x 0px 0px;
+    color: #666;
 }
 
 /* Headings */
@@ -43,25 +45,86 @@ aside, nav, article, figure {
 }
 
 /* header nav */
+#header {
+    padding-top: 20px;
+}
+#header .hdrl {
+    width: 20px;
+    height: 50px;
+    float: left;
+    background: url(/static/img/hdrl.gif) top left no-repeat;
+}
+
+#header .hdrr {
+    width: 20px;
+    height: 50px;
+    float: right;
+    background: url(/static/img/hdrr.gif) top right no-repeat;
+}
 #header div.top {
     width: 780px;
     margin: 0 auto;
+    color: #999;
+    height: 50px;
+    line-height: 50px;
+    margin-bottom: 20px;
+    background: url(/static/img/hdr.gif) repeat-x 0px 0px;
 }
 #header nav {
-	height: 20px;
-	line-height: 30px;
-	margin: 0 auto 2em auto;
-	padding: 0;
-	text-align: center;
-	width: 780px;
-
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 }
+#header h1 {
+	color: #fff;
+	float: left;
+	margin-right: 80px;
+	font-size: 18px;
+}
+#header nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	width: auto;
+	height: 50px;
+}
+#header nav li {
+    margin: 0;
+    border: 0 none;
+    padding: 0;
+    float: left; /*For Gecko*/
+    display: inline;
+    list-style: none;
+    position: relative;
+    height: 50px;
+    padding: 0 10px;
+    background: url(/static/img/nsp.gif) center right no-repeat;
+    line-height: 50px;
+}
 
-#header nav ul {list-style: none; margin: 0 auto; width: 780;}
-#header nav li {float: left; display: inline; margin: 0;}
+/* Root Menu */
+#header a {
+    color: #999;
+    text-decoration: none;
+}
+#header nav a {
+    float: none !important; /*For Opera*/
+    float: left; /*For IE*/
+    display: block;
+    height: auto !important;
+    height: 1%; /*For IE*/
+    height: 30px;
+    padding: 0 10px;
+}
+
+#header nav a:hover,
+#header nav li:hover a,
+#header nav li.iehover a {
+    color: #fff;
+}
+    
+#header nav li.active a { color: #ddd; }
+#header nav li.active a:hover { color: #fff; }
 
 /* content */
 #content {
@@ -84,14 +147,100 @@ aside, nav, article, figure {
     border: 1px solid #ccc;
     margin: 10px 0px 0px 0px;
 }
+#content div.bheader {
+    height: 54px;
+    line-height: 54px;
+    background: url(/static/img/bhead.gif) 0 0 repeat-x;
+    overflow: hidden;
+}
+#content div.bheader .bheaderl {
+    width: 20px;
+    height: 54px;
+    float: left;
+    background: url(/static/img/bheadl.gif) top left no-repeat;
+}
 
+#content div.bheader .bheaderr {
+    width: 20px;
+    height: 54px;
+    float: right;
+    background: url(/static/img/bheadr.gif) top right no-repeat;
+}
+#content div.bheader h2 {
+    font-size: 18px;
+    font-weight: normal;
+    color: #555;
+    text-shadow: 1px 1px 0 #fff;
+    float: left;
+}
+#content div.bheader ul {
+    float: right;
+    font-size: 11px;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #fff;
+}
+    
+#content div.bheader ul li {
+    display: inline;
+    padding: 3px 0;
+    padding-left: 20px;
+    background: url(/static/img/phs.gif) 7px center no-repeat;
+}
+    
+#content div.bheader ul li.nobg { background: none; }
+    
+#content div.bheader ul li a {
+    text-decoration: none;
+    color: #666;
+    outline: none;
+}
+
+#content div.bheader ul li.active a { color: #888; }
+#content div.bheader ul li a:hover { color: #008ee8; }
+
+#content div.main {
+    background: #fff;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    padding: 10px 20px 0;
+}
+
+#content .main form label {
+    font-size: 12px;
+    font-weight: bold;
+    color: #555;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+#content .main form input.text,
+#content .main form textarea.text {
+    width: 410px;
+    background: #fefefe;
+    border: 1px solid #bbb;
+    font-size: 14px;
+    color: #333;
+    padding: 7px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    outline: none;
+    vertical-align: middle;
+}
 /* footer */
 #footer {
     border-top: 1px solid #ccc;
-    background-color: #fff;
+    padding: 10px 0px 50px 0px;
 }
 
 #footer div.bottom {
     width: 780px;
     margin:0 auto;
+}
+
+#footer div.bottom p.left {
+    float: left;
+}
+
+#footer div.bottom p.right {
+    float: right;
 }

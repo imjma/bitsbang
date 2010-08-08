@@ -4,8 +4,13 @@
 {% endblock %}
 
 {% block content %}
-<h2>Spam</h2>
-<p><a href="spam/new">New</a></p>
+<div class="bheader">
+    <div class="bheaderl"></div>
+    <div class="bheaderr"></div>
+    <h2>Spam</h2>
+    <ul><li><a href="spam/new">New</a></li></ul>
+    </div>
+<div class="main">
 {% if spams %}
     <ol>
     {% for spam in spams %}
@@ -24,4 +29,5 @@
     {% endfor %}
     </ol>
 {% endif %}
+</div>
 {% endblock %}

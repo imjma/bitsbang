@@ -1,13 +1,12 @@
 {% if error %}<p>{{ error }}</p>{% endif %}
-{% if back_url %}<p><a href="{{ back_url }}">Back</a></p>{% endif %}
 <form method="post" action="{{ this_url }}">
     <dl>
         <dd>
             <label>Title:</label>
             {% if spam %}
-                <span>{{ spam.title }}</span>
+                <span>{{ title }}</span>
             {% else %}
-                <input type="text" name="title" value="{{ title }}" />
+                <input type="text" name="title" value="{{ title }}" class="text" />
                 {% if title_error %}
     			<span>{{ title_error }}</span>
     			{% endif %}
@@ -15,11 +14,11 @@
         </dd>
         <dd>
             <label>Sub Title:</label>
-            <input type="text" name="sub_title" value="{{ sub_title }}" />
+            <input type="text" name="sub_title" value="{{ sub_title }}" class="text" />
         </dd>
         <dd>
             <label>Comment:</label>
-            <textarea name="comment" rows="20" cols="50">{{ comment }}</textarea>
+            <textarea name="comment" rows="20" cols="50" class="text">{{ comment }}</textarea>
             {% if comment_error %}
 			<span>{{ comment_error }}</span>
 			{% endif %}
