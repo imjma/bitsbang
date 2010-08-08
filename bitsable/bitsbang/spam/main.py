@@ -38,9 +38,10 @@ class NewSpamHandler(PublicHandler):
     def get(self, spamid = None):
         self.template_value['this_url'] = '/spam/new/'
         if not spamid is None:
-            parent_spam = find_spam(self, spamid)
-            if self.user.key() == parent_spam.user.key():
-                return self.redirect('/spam/%s/' % spamid)
+            # parent_spam = find_spam(self, spamid)
+            # if self.user.key() == parent_spam.user.key():
+            #     return self.redirect('/spam/%s/' % spamid)
+            parent_spam = can_spam(self, spamid)
             self.template_value['spam'] = parent_spam
             self.template_value['title'] = parent_spam.title
             self.template_value['back_url'] = '/spam/%s/' % spamid
@@ -53,9 +54,10 @@ class NewSpamHandler(PublicHandler):
         title = self.request.get('title').strip()
         parent_spam = None
         if not spamid is None:
-            parent_spam = find_spam(self, spamid)
-            if self.user.key() == parent_spam.user.key():
-                return self.redirect('/spam/%s/' % spamid)
+            # parent_spam = find_spam(self, spamid)
+            # if self.user.key() == parent_spam.user.key():
+            #     return self.redirect('/spam/%s/' % spamid)
+            parent_spam = can_spam(self, spamid)
             self.template_value['spam'] = parent_spam
             self.template_value['this_url'] = '/spam/%s/new/' % spamid
             title = parent_spam.title
