@@ -107,6 +107,7 @@ class SignupHandler(PublicHandler):
                 notice = u'some errors on saving data'
 
         self.template_value = ({
+            'setting' : self.setting,
             'errors' : errors,
             'notice' : notice,
             'username_error' : username_error_value[username_error],
@@ -135,6 +136,7 @@ class SigninHandler(PublicHandler):
 
         error_value = u'wrong username and password combination'
         self.template_value = ({
+            'setting' : self.setting,
             'notice' : error_value
         })
         self.render('signin.html')
