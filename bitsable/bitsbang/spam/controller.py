@@ -18,6 +18,8 @@ def find_subspam(self, spamid):
 def can_spam(self, spam):
     if spam is None:
         return False
+    if self.user is None:
+        return False
     if self.user.key() == spam.user.key():
         return False
     subspam = SubSpam.all().filter('parent_spam = ', spam).filter('user = ', self.user).get()
