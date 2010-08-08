@@ -17,7 +17,6 @@ indexes:
 
 - kind: Spam
   properties:
-  - name: parent_spam
   - name: updated_at
     direction: desc
 

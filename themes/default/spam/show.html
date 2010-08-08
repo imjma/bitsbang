@@ -10,43 +10,55 @@
     <div class="bheaderr"></div>
     <h2>{{ spam.title|escape }}</h2>
     <ul>
-        <li>{{ spam.average_rating|floatformat:1 }} scores by {{ spam.spam_count }} spam{{ spam.spam_count|pluralize }}</li>
-        {% ifequal user.key spam.user.key %}
-        <li><a href="/spam/{{ spam.key.id }}/edit">edit</a></li>
-        {% endifequal %}
+        <li class="nobg">{{ spam.average_rating|floatformat:1 }} scores by {{ spam.spam_count }} spam{{ spam.spam_count|pluralize }}</li>
     </ul>
 </div>
-<div class="main">
+<div id="main">
     <article class="spam">
-        <p>{{ spam.sub_title|escape }}</p>
-        <p>by {{ spam.user.username }}</p>
-        <p>{{ spam.comment|escape|linebreaksbr }}</p>
-        <p>
-            <ul>
-                 <li>UI Interact: {{ spam.rating.ui_interact}}</li>
-                 <li>Gameplay: {{ spam.rating.gameplay}}</li>
-                 <li>Replicability: {{ spam.rating.replicability}}</li>
-                 <li>Highlight: {{ spam.rating.highlight}}</li>
-            </ul>
-        </p>
+        <dl>
+            <dt class="subtitle">
+                <h3>{{ spam.sub_title|escape }}</h3>
+                <ul class="rating">
+                    <li class="nobg">UI Interact: {{ spam.rating.ui_interact}}</li>
+                    <li>Gameplay: {{ spam.rating.gameplay}}</li>
+                    <li>Replicability: {{ spam.rating.replicability}}</li>
+                    <li>Highlight: {{ spam.rating.highlight}}</li>
+                </ul>
+            </dt>
+            <dd class="username">
+                <p>By {{ spam.user.username }} at {{ spam.created_at|timesince }} ago</p>
+                {% ifequal user.key spam.user.key %}
+                <ul>
+                    <li class="nobg"><a href="/spam/{{ spam.key.id }}/edit">edit</a></li>
+                </ul>
+                {% endifequal %}
+            </dd>
+            <dd class="comment">{{ spam.comment|escape|linebreaksbr }}</dd>
+        </dl>
     </article>
     {% if subspams %}
         {% for subspam in subspams %}
-        <article class="subspam">
-            <p>{{ subspam.sub_title|escape }}</p>
-            <p>by {{ subspam.user.username }}</p>
-            <p>{{ subspam.comment|escape|linebreaksbr }}</p>
-            <p>
-                <ul>
-                     <li>UI Interact: {{ subspam.rating.ui_interact}}</li>
-                     <li>Gameplay: {{ subspam.rating.gameplay}}</li>
-                     <li>Replicability: {{ subspam.rating.replicability}}</li>
-                     <li>Highlight: {{ subspam.rating.highlight}}</li>
-                </ul>
-            </p>
-            {% ifequal user.key subspam.user.key %}
-            <p><a href="/spam/{{ subspam.parent_spam.key.id }}/{{ subspam.key.id }}/edit">edit</a></p>
-            {% endifequal %}
+        <article class="spam">
+            <dl>
+                <dt class="subtitle">
+                    <h3>{{ subspam.sub_title|escape }}</h3>
+                    <ul class="rating">
+                        <li class="nobg">UI Interact: {{ subspam.rating.ui_interact}}</li>
+                        <li>Gameplay: {{ subspam.rating.gameplay}}</li>
+                        <li>Replicability: {{ subspam.rating.replicability}}</li>
+                        <li>Highlight: {{ subspam.rating.highlight}}</li>
+                    </ul>
+                </dt>
+                <dd class="username">
+                    <p>By {{ subspam.user.username }} at {{ subspam.created_at|timesince }} ago</p>
+                    {% ifequal user.key subspam.user.key %}
+                    <ul>
+                        <li class="nobg"><a href="/spam/{{ subspam.parent_spam.key.id }}/{{ subspam.key.id }}/edit">edit</a></li>
+                    </ul>
+                    {% endifequal %}
+                </dd>
+                <dd class="comment">{{ subspam.comment|escape|linebreaksbr }}</dd>
+            </dl>
         </article>
         {% endfor %}
     {% endif %}

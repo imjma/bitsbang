@@ -8,9 +8,11 @@
     <div class="bheaderl"></div>
     <div class="bheaderr"></div>
     <h2>Spam</h2>
-    <ul><li><a href="spam/new">New</a></li></ul>
+    {% if can_spam %}
+    <ul><li class="nobg"><a href="/spam/new">New</a></li></ul>
+    {% endif %}
     </div>
-<div class="main">
+<div id="main">
 {% if spams %}
     <ol>
     {% for spam in spams %}

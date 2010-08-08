@@ -15,14 +15,21 @@ class SpamHandler(PublicHandler):
         if spamid is None:
             spams = Spam.all().order('-updated_at').fetch(10)
             self.template_value['spams'] = spams
+            self.template_value['can_spam'] = True
+            if self.user is None:
+                self.template_value['can_spam'] = False
             return self.render('spam/index.html')
         else:
             spam = Spam.get_by_id(int(spamid))
             self.template_value['spam'] = spam
             subspams = SubSpam.all().filter("parent_spam = ", spam).order('created_at')
             self.template_value['subspams'] = subspams
-            if self.user is not None:
-                self.template_value['can_spam'] = True
+            
+            self.template_value['can_spam'] = True
+            if self.user is None:
+                self.template_value['can_spam'] = False
+            elif self.user.key() == spam.user.key():
+                self.template_value['can_spam'] = False
             return self.render('spam/show.html')
 
 class NewSpamHandler(PublicHandler):
@@ -32,6 +39,8 @@ class NewSpamHandler(PublicHandler):
         self.template_value['this_url'] = '/spam/new'
         if not spamid is None:
             parent_spam = find_spam(self, spamid)
+            if self.user.key() == parent_spam.user.key():
+                return self.redirect('/spam/%s' % spamid)
             self.template_value['spam'] = parent_spam
             self.template_value['title'] = parent_spam.title
             self.template_value['back_url'] = '/spam/%s' % spamid
@@ -45,6 +54,8 @@ class NewSpamHandler(PublicHandler):
         parent_spam = None
         if not spamid is None:
             parent_spam = find_spam(self, spamid)
+            if self.user.key() == parent_spam.user.key():
+                return self.redirect('/spam/%s' % spamid)
             self.template_value['spam'] = parent_spam
             self.template_value['this_url'] = '/spam/%s/new' % spamid
             title = parent_spam.title
