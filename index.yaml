@@ -15,11 +15,6 @@ indexes:
   - name: key_name
   - name: exp_date
 
-- kind: Spam
-  properties:
-  - name: updated_at
-    direction: desc
-
 - kind: SubSpam
   properties:
   - name: parent_spam
